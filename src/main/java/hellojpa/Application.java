@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,10 +16,13 @@ public class Application {
         transaction.begin();
 
         try {
-            List<Member> resultList = entityManager.createQuery("select m from Member as m ", Member.class)
-                    .getResultList();
+            Member member = new Member();
+            member.setId(2L);
+            member.setName("sss");
 
-            resultList.forEach(member -> System.out.println(member.getName()));
+            entityManager.persist(member);
+            entityManager.flush();
+            System.out.println("=================");
 
             transaction.commit();
         } catch (Exception e) {
