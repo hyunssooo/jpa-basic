@@ -1,34 +1,32 @@
 package hellojpa.domain;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "MBR")
+@SequenceGenerator(name = "member_seq_generator", sequenceName = "member_seq")
 public class Member {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
     private Long id;
 
     @Column(name = "name")
     private String userName;
 
-    private Integer age;
+    public Long getId() {
+        return id;
+    }
 
-    @Enumerated(value = EnumType.STRING)
-    private RoleType roleType;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    @CreationTimestamp
-    private LocalDateTime createdDateTime;
+    public String getUserName() {
+        return userName;
+    }
 
-    @UpdateTimestamp
-    private LocalDateTime updatedDateTime;
-
-    @Lob
-    private String description;
-
-    @Transient
-    private String temp;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }
