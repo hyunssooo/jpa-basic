@@ -4,20 +4,18 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "MBR")
-@SequenceGenerator(
-        name = "MEMBER_SEQ_GENERATOR",
-        sequenceName = "MEMBER_SEQ",
-        initialValue = 1, allocationSize = 50)
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "MEMBER_SEQ_GENERATOR")
+    @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-
-    @Column(name = "name")
+    @Column(name = "USER_NAME")
     private String userName;
+
+    @Column(name = "TEAM_ID")
+    private Long teamId;
 
     public Long getId() {
         return id;
@@ -33,5 +31,13 @@ public class Member {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
     }
 }
