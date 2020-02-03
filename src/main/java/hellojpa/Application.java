@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class Application {
+    
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hello");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -16,13 +17,12 @@ public class Application {
         transaction.begin();
 
         try {
-            Member member = new Member();
-            member.setId(2L);
-            member.setName("sss");
 
+            Member member = new Member();
+
+            member.setUserName("test");
+            System.out.println("+++++++++++++++++++++++");
             entityManager.persist(member);
-            entityManager.flush();
-            System.out.println("=================");
 
             transaction.commit();
         } catch (Exception e) {
