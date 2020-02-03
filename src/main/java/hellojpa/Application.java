@@ -27,6 +27,12 @@ public class Application {
             member.setTeamId(teamA.getId());
             entityManager.persist(member);
 
+            Member findMember = entityManager.find(Member.class, member.getId());
+
+            Long teamId = findMember.getTeamId();
+            Team findTeam = entityManager.find(Team.class, teamId);
+
+
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
