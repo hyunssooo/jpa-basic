@@ -24,14 +24,13 @@ public class Application {
 
             Member member = new Member();
             member.setUserName("test");
-            member.setTeamId(teamA.getId());
+            member.setTeam(teamA);
             entityManager.persist(member);
 
             Member findMember = entityManager.find(Member.class, member.getId());
 
-            Long teamId = findMember.getTeamId();
-            Team findTeam = entityManager.find(Team.class, teamId);
-
+            Team findTeam = findMember.getTeam();
+            System.out.println(findTeam.getName());
 
             transaction.commit();
         } catch (Exception e) {
